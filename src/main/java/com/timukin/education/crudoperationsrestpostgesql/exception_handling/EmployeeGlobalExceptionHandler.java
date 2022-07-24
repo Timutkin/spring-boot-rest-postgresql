@@ -5,20 +5,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * The type Employee global exception handler.
+ *
+ * @author Timofey Utkin
+ * @version 1.0
+ */
 @ControllerAdvice
 public class EmployeeGlobalExceptionHandler {
-
-    @ExceptionHandler
-    public ResponseEntity<Response> handleException(NoSuchEmployeeException exception){
-        Response data = new Response();
-        data.setInfo(exception.getMessage());
-        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler
+    /**
+     * Handle exception response entity.
+     *
+     * @param exception the exception
+     * @return the response entity
+     */
+    @ExceptionHandler(value = {NoSuchEmployeeException.class, InvalidEmailException.class, UserAlreadyExistException.class})
     public ResponseEntity<Response> handleException(Exception exception){
         Response data = new Response();
-        data.setInfo(exception.getMessage());
+        data.setInfo(exception.getClass().getSimpleName() + ":" + exception.getMessage());
         return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
     }
 }

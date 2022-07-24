@@ -1,4 +1,4 @@
-package com.timukin.education.crudoperationsrestpostgesql.entity;
+package com.timukin.education.crudoperationsrestpostgesql.model;
 
 
 import lombok.Data;
@@ -6,6 +6,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * The type Employee.
+ *
+ * @author Timofey Utkin
+ * @version 1.0
+ */
 @Entity
 @Table(schema = "main", name = "employees")
 @Data
